@@ -1,47 +1,107 @@
+import { useState } from "react";
+import "./App.css";
+
 function App() {
+  const [country, setCountry] = useState("India");
+
+  const countries = {
+    India: "+91",
+    USA: "+1",
+    UK: "+44",
+    Australia: "+61",
+    Canada: "+1",
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-yellow-100 p-8">
+    <div className="page">
+      <div className="form-container">
+        <div className="form-header">
+          <h2>Create Account</h2>
+          <p>Fill in your details to register</p>
+        </div>
 
-      <h1 className="text-5xl font-bold text-yellow-600 mb-8">
-        Hello Tailwind CSS!
-      </h1>
+        <form>
+          <div className="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your full name" />
+          </div>
 
-      <table className="border-collapse border border-gray-400 bg-white shadow-lg">
-        <thead>
-          <tr className="bg-yellow-400">
-            <th className="border border-gray-400 px-6 py-3">ID</th>
-            <th className="border border-gray-400 px-6 py-3">Name</th>
-            <th className="border border-gray-400 px-6 py-3">Department</th>
-            <th className="border border-gray-400 px-6 py-3">Mark</th>
-          </tr>
-        </thead>
+          <div className="form-group">
+            <label>Mobile Number</label>
 
-        <tbody>
-          <tr>
-            <td className="border border-gray-400 px-6 py-3">1</td>
-            <td className="border border-gray-400 px-6 py-3">Hema</td>
-            <td className="border border-gray-400 px-6 py-3">B.Sc CS</td>
-            <td className="border border-gray-400 px-6 py-3">90</td>
-          </tr>
+            <div className="mobile-box">
+              <select
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                {Object.keys(countries).map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
 
-          <tr className="bg-yellow-50">
-            <td className="border border-gray-400 px-6 py-3">2</td>
-            <td className="border border-gray-400 px-6 py-3">Priya</td>
-            <td className="border border-gray-400 px-6 py-3">BCA</td>
-            <td className="border border-gray-400 px-6 py-3">85</td>
-          </tr>
+              <span className="code">{countries[country]}</span>
 
-          <tr>
-            <td className="border border-gray-400 px-6 py-3">3</td>
-            <td className="border border-gray-400 px-6 py-3">Divya</td>
-            <td className="border border-gray-400 px-6 py-3">B.Sc IT</td>
-            <td className="border border-gray-400 px-6 py-3">95</td>
-          </tr>
-        </tbody>
-      </table>
+              <input type="text" placeholder="Mobile number" />
+            </div>
+          </div>
 
+          <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email" />
+          </div>
+
+          <div className="form-group">
+            <label>Gender</label>
+
+            <div className="options">
+              <label>
+                <input type="radio" name="gender" />
+                Male
+              </label>
+
+              <label>
+                <input type="radio" name="gender" />
+                Female
+              </label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Skills</label>
+
+            <div className="options skills">
+              <label>
+                <input type="checkbox" />
+                HTML
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                CSS
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                React
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                JavaScript
+              </label>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Address</label>
+            <textarea placeholder="Enter your address"></textarea>
+          </div>
+
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

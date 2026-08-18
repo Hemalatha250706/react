@@ -1,39 +1,78 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [country, setCountry] = useState("India");
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(result => setData(result));
-  }, []);
+  const countries = {
+    India: "+91",
+    USA: "+1",
+    UK: "+44",
+    Australia: "+61",
+    Canada: "+1",
+  };
 
   return (
-    <div>
-      <h1>Posts</h1>
+    <div style={{ width: "400px", margin: "30px auto" }}>
+      <h2>Registration Form</h2>
 
-      <table border="5">
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Body</th>
-          </tr>
-        </thead>
+      <label>Name</label>
+      <input type="text" placeholder="Enter your name" />
 
-        <tbody>
-          {data.map(post => (
-            <tr key={post.id}>
-              <td>{post.userId}</td>
-              <td>{post.id}</td>
-              <td>{post.title}</td>
-              <td>{post.body}</td>
-            </tr>
+      <br /><br />
+
+      <label>Mobile Number</label>
+      <div>
+        <select
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        >
+          {Object.keys(countries).map((item) => (
+            <option key={item}>{item}</option>
           ))}
-        </tbody>
-      </table>
+        </select>
+
+        <input
+          type="text"
+          placeholder="Mobile number"
+          style={{ width: "200px" }}
+        />
+
+        <span> {countries[country]}</span>
+      </div>
+
+      <br />
+
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" />
+
+      <br /><br />
+
+      <label>Gender</label>
+      <br />
+
+      <input type="radio" name="gender" /> Male
+      <input type="radio" name="gender" /> Female
+
+      <br /><br />
+
+      <label>Skills</label>
+      <br />
+
+      <input type="checkbox" /> HTML
+      <input type="checkbox" /> CSS
+      <input type="checkbox" /> React
+      <input type="checkbox" /> JavaScript
+
+      <br /><br />
+
+      <label>Address</label>
+      <br />
+
+      <textarea placeholder="Enter your address"></textarea>
+
+      <br /><br />
+
+      <button>Submit</button>
     </div>
   );
 }
